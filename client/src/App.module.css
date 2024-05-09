@@ -1,3 +1,11 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .mainText {
     font-size: 50px;
     color: red;
@@ -22,4 +30,25 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
     font-weight: bold;
     user-select: none;
+}
+
+.winTitle {
+    align-self: center;
+    text-align: center;
+}
+
+.resetButton {
+    align-self: center;
+    text-align: center;
+    width: 70px;
+    height: 30px;
+    border: 2px solid rgb(53, 174, 255);
+    border-radius: 5px;
+    color: black;
+    background-color: rgb(222, 252, 255);
+    font-weight: 600;
+}
+
+.resetButton:hover {
+    background-color: rgb(163, 209, 214);
 }
