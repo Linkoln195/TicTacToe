@@ -71,7 +71,7 @@ function App() {
 
       </div>
 
-      <h2 className={classes.winTitle} style={{ visibility: winTitleVisibility }}>{Player + " WINS!"}</h2>
+      <h2 className={classes.winTitle} style={{ visibility: winTitleVisibility }}>{player + " WINS!"}</h2>
 
       <button className={classes.resetButton} style={{ visibility: buttonVisibility }}>Reset</button>
     </div>
