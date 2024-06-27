@@ -2,7 +2,7 @@ import classes from './App.module.css'
 import { useState } from 'react';
 
 function App() {
-  let [player, setPlayer] = useState("X");
+  const [player, setPlayer] = useState("X");
   let winComb = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
   let field = new Array(9);
   const [winTitleVisibility, setWinTitleVisibility] = useState('hidden');
