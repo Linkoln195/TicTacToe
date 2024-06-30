@@ -2,7 +2,8 @@ import classes from './App.module.css'
 import { useState } from 'react';
 
 function App() {
-  const [player, setPlayer] = useState("X");
+  let Player = "X";
+  const [winner, setWinner] = useState('');
   let winComb = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
   let field = new Array(9);
   const [winTitleVisibility, setWinTitleVisibility] = useState('hidden');
@@ -12,29 +13,29 @@ function App() {
     let clickedField = event.target.id;
 
     if (event.target.innerHTML == "") {
-      if (player == "X") {
-        field[clickedField - 1] = player;
+      if (Player == "X") {
+        field[clickedField - 1] = Player;
         event.target.innerHTML = field[clickedField - 1];
-        checkWin(clickedField, player);
+        checkWin(clickedField, Player);
         console.log(clickedField);
 
-        if(winTitleVisibility == "hidden"){
-          setPlayer("O");
+        if (winTitleVisibility == "hidden") {
+          Player = "O";
         }
-      } else if (player == "O") {
-        field[clickedField - 1] = player;
+      } else if (Player == "O") {
+        field[clickedField - 1] = Player;
         event.target.innerHTML = field[clickedField - 1];
-        checkWin(clickedField, player);
+        checkWin(clickedField, Player);
         console.log(clickedField);
 
-        if(winTitleVisibility == "hidden"){
-          setPlayer("X");
+        if (winTitleVisibility == "hidden") {
+          Player = "X";
         }
       }
     }
   }
 
-  const checkWin = (clickedField, player) => {
+  const checkWin = (clickedField, Player) => {
 
     for (let i = 0; i < winComb.length; i++) {
 
@@ -42,8 +43,9 @@ function App() {
 
         if (winComb[i][j] == clickedField) {
 
-          if (field[winComb[i][0] - 1] == player && field[winComb[i][1] - 1] == player && field[winComb[i][2] - 1] == player) {
-            console.log(player + " WINS!");
+          if (field[winComb[i][0] - 1] == Player && field[winComb[i][1] - 1] == Player && field[winComb[i][2] - 1] == Player) {
+            console.log(Player + " WINS!");
+            setWinner(Player);
             setWinTitleVisibility('visible');
             setButtonVisibility('visible');
           }
@@ -75,9 +77,9 @@ function App() {
 
       </div>
 
-      <h2 className={classes.winTitle} style={{ visibility: winTitleVisibility }}>{player + " WINS!"}</h2>
+      <h2 className={classes.winTitle} style={{ visibility: winTitleVisibility }}>{winner + " WINS!"}</h2>
 
-      <button className={classes.resetButton} style={{ visibility: buttonVisibility }}>Reset</button>
+      <button className={classes.resetButton} style={{ visibility: buttonVisibility }} onClick={() => location.reload()}>Reset</button>
     </div>
   )
 }
