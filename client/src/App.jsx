@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function App() {
   let Player = "X";
-  const [winner, setWinner] = useState('');
+  const [winner, setWinner] = useState('Nobody');
   let winComb = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
   let field = new Array(9);
   const [winTitleVisibility, setWinTitleVisibility] = useState('hidden');
@@ -11,24 +11,50 @@ function App() {
 
   const onFieldClick = (event) => {
     let clickedField = event.target.id;
+    let full = true;
 
     if (event.target.innerHTML == "") {
-      if (Player == "X") {
-        field[clickedField - 1] = Player;
-        event.target.innerHTML = field[clickedField - 1];
-        checkWin(clickedField, Player);
-        console.log(clickedField);
+      if (winTitleVisibility == "hidden") {
+        if (Player == "X") {
+          field[clickedField - 1] = Player;
+          event.target.innerHTML = field[clickedField - 1];
 
-        if (winTitleVisibility == "hidden") {
+          for (let i = 0; i < field.length; i++) {
+            if (field[i] == undefined) {
+              full = false;
+              console.log('not full');
+            }
+          }
+
+          if (full == true) {
+            setWinTitleVisibility('visible');
+            setButtonVisibility('visible');
+          }
+
+          checkWin(clickedField, Player);
+          console.log(clickedField);
+
           Player = "O";
-        }
-      } else if (Player == "O") {
-        field[clickedField - 1] = Player;
-        event.target.innerHTML = field[clickedField - 1];
-        checkWin(clickedField, Player);
-        console.log(clickedField);
 
-        if (winTitleVisibility == "hidden") {
+        } else if (Player == "O") {
+          field[clickedField - 1] = Player;
+          event.target.innerHTML = field[clickedField - 1];
+
+          for (let i = 0; i < field.length; i++) {
+            if (field[i] == undefined) {
+              full = false;
+              console.log('not full');
+            }
+          }
+
+          if (full == true) {
+            setWinTitleVisibility('visible');
+            setButtonVisibility('visible');
+          }
+
+          checkWin(clickedField, Player);
+          console.log(clickedField);
+
           Player = "X";
         }
       }
